@@ -125,7 +125,10 @@ void Gui::render(const Plane &plane, const Point *target,
         XDrawString(display, window, gc, 580, 50, classification_text, strlen(classification_text));
 
         // Cursor
-        XSetForeground(display, gc, 0x000000);
+        unsigned long cursor_color =
+            (classification == Classification::ORANGE) ? 0xFFA500 : 0x0000FF;
+
+        XSetForeground(display, gc, cursor_color);
         XDrawArc(display, window, gc, target->x - 4, target->y - 4, 8, 8, 0, 360 * 64);
         XFillArc(display, window, gc, target->x - 4, target->y - 4, 8, 8, 0, 360 * 64);
     }
